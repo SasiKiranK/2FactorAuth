@@ -2,6 +2,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Commershop_TwoFactor',
+    'Commerceshop_TwoFactor',
     __DIR__
 );
