@@ -2,18 +2,20 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
 	<head>
         <title>Test</title>
-        <!-- 
-		demo
-		<css src="Commerceshop_TwoFactor::css/css.css"/>
-		<script src="Commerceshop_TwoFactor::js/js.js"/>
-		<css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
-		<script src="path/file.js" defer="defer"/>
-		<link src="http://url.com" src_type="url"/>
-		<remove src="path/remove/file.css"/>
-		-->
+        
     </head> 
 	<body>
+		<referenceContainer name="head" remove="true"/>
+	    <referenceContainer name="header" remove="true"/>
+	    <referenceContainer name="menu" remove="true"/>
+	    <referenceContainer name="notifications" remove="true"/>
+	    <referenceContainer name="footer" remove="true"/>
         <referenceContainer name="content">
+       
+        <referenceContainer name="menu.wrapper" remove="true"/>
+
+    <referenceBlock name="dashboard" remove="true"/>
+        	<!-- <remove  >  -->
             <block class="Commerceshop\TwoFactor\Block\Adminhtml\Index\Index" name="twofactor_block_adminhtml_index_index"  template="Commerceshop_TwoFactor::twofactor_index_index.phtml" />
         </referenceContainer>
     </body>
