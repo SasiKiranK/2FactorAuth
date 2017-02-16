@@ -240,6 +240,11 @@ a.button:hover {
   -moz-box-shadow: none; 
   box-shadow: none;
 }
+.error {
+color: #D8000C;
+background-color: #FFBABA;
+background-image: url('error.png');
+}
 
 
 </style>
@@ -250,13 +255,22 @@ a.button:hover {
 	<div class="testbox">
   <h1>Please Enter OTP</h1>
 
-  <form action="<?php echo $block->getformurl(); ?>">
+  <form action="<?php echo $block->getformurl(); ?>" method="POST" >
       
-    
+    <?php
+    if ($block->getmessage()) { ?>
+    <i class="fa fa-warning"></i>
+    <div  id="icon1" class="error"><?php 
+    //echo $block->getmessage();
+    ?></div>
+
+
+
+   <?php } ?>
   <hr>
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
   
-  <input type="password" name="name" id="name" placeholder="OTP" required/><br/>
+  <input type="password" name="OTP" id="name" placeholder="OTP" required/><br/>
   <button class="button">Submit</button>
   <a href="<?php echo $block->resend(); ?>" class="button1">Re-Send OTP</a>
    
