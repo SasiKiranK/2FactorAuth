@@ -37,6 +37,7 @@ class AdminLoginSucceeded implements ObserverInterface
         $message = "Your Verification code is : ".$myValue;
         $mobileNumber = '9751537453';
         if(sendWay2SMS ( '9789822842' , 'manoj' , $mobileNumber , $message)){
+            $this->_session->setOtpmessage("We have sent the OTP to your Registered Mobile Number");
         }
     }
 }
