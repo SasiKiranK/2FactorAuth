@@ -277,6 +277,12 @@ border-radius: 5px;}
   <hr>
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
   <input type="password" name="OTP" id="name" placeholder="OTP" required/><br/>
+    <?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+$FormKey = $objectManager->get('Magento\Framework\Data\Form\FormKey'); 
+?>
+<input name="form_key" type="hidden" value="<?php echo $FormKey->getFormKey();?>">
+
   <button class="button">Submit</button>
   <a href="<?php echo $block->resend(); ?>" class="button1">Re-Send OTP</a>
    

@@ -25,7 +25,6 @@ class AdminLoginSucceeded implements ObserverInterface
 	}
     public function execute(Observer $observer) 
     {
-
     	$auth = $this->_authSession;
     	$auth->getUser()->getUserId();
     	$this->_session->setIsloggedin(1);
