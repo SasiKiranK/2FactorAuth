@@ -250,14 +250,9 @@ a.button:hover {
 	<div class="testbox">
   <h1>Please Enter OTP</h1>
 
-  <form action="verify">
+  <form action="<?php echo $block->getformurl(); ?>">
       
-    <!-- <div class="accounttype">
-      <input type="radio" value="None" id="radioOne" name="account" checked/>
-      <label for="radioOne" class="radio" chec>Personal</label>
-      <input type="radio" value="None" id="radioTwo" name="account" />
-      <label for="radioTwo" class="radio">Company</label>
-    </div> -->
+    
   <hr>
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
   
