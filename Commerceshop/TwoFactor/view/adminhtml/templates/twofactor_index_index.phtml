@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 <style type="text/css">
@@ -141,7 +142,7 @@ input[type=text],input[type=password]{
 
 input[type=password]{
   margin-bottom: 25px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 #icon {
@@ -175,7 +176,7 @@ a.button {
   font-weight: 600;
   color: white;
   padding: 4px 50px 0px 20px;
-  margin: 10px 8px 20px 0px;
+  margin: 10px 17px 20px 0px;
   display: inline-block;
   float: right;
   text-decoration: none;
@@ -204,7 +205,7 @@ a.button:hover {
     background-color: #3a57af;
     border: none;
     color: white;
-    padding: 10px 12px;
+    padding: 10px 14px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -240,12 +241,14 @@ a.button:hover {
   -moz-box-shadow: none; 
   box-shadow: none;
 }
-.error {
-color: #D8000C;
-background-color: #FFBABA;
-background-image: url('error.png');
+.error{
+color: #00cc48;
+text-align: center;
 }
-
+.button{
+border-radius: 5px;}
+.button1
+{border-radius: 5px;}
 
 </style>
 </head>
@@ -259,17 +262,20 @@ background-image: url('error.png');
       
     <?php
     if ($block->getmessage()) { ?>
-    <i class="fa fa-warning"></i>
-    <div  id="icon1" class="error"><?php 
-    //echo $block->getmessage();
-    ?></div>
+
+    
+    <div  id="icon1" class="error"><i class="icon-envelope"></i>&nbsp;<?php 
+    echo $block->getmessage();
+
+    ?>
+      
+    </div>
 
 
 
    <?php } ?>
   <hr>
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
-  
   <input type="password" name="OTP" id="name" placeholder="OTP" required/><br/>
   <button class="button">Submit</button>
   <a href="<?php echo $block->resend(); ?>" class="button1">Re-Send OTP</a>
