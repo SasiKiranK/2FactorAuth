@@ -16,9 +16,16 @@ protected $_backendUrl;
     }
     public function getformurl()
     {
-        // $params = array('some'=>'url_parameters');
-
         return $url = $this->_backendUrl->getUrl("twofactor/index/verify");
-
+        // $params = array('some'=>'url_parameters');
     }
+    public function logout()
+    {
+    	return $url = $this->_backendUrl->getUrl("twofactor/index/logout");
+    }
+ 	public function resend()
+    {
+    	return $url = $this->_backendUrl->getUrl("twofactor/index/resend");
+    }
+       
 }
