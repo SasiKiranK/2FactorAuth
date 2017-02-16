@@ -27,7 +27,9 @@ class AdminLoginSucceeded implements ObserverInterface
     	$auth->getUser()->getUserId();
     	$this->_session->setIsloggedin(1);
     	$this->_session->setOtpdone(0);
-    	$this->_session->setOtp(1234);
+
+        $myValue = rand(111111,999999);
+    	$this->_session->setOtp($myValue);
     	// echo $this->_session->getSasi();
 
     	// $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/TwoFactor.log'); 
