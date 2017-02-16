@@ -8,37 +8,32 @@ class PreDispatch implements ObserverInterface
 	protected $_responseFactory;
 	protected $_url;
     protected $_session;
+    protected $_request;
 
 	
 	public function __construct(\Magento\Framework\App\ResponseFactory $responseFactory,
 		\Magento\Framework\UrlInterface $url,
-        \Magento\Backend\Model\Session $session
+        \Magento\Backend\Model\Session $session,
+        \Magento\Framework\App\RequestInterface $request
 		)
 	{	
 		$this->_responseFactory = $responseFactory;
 		$this->_url = $url;
         $this->_session = $session;
+        $this->_request = $request;
 
         
 	}
     public function execute(Observer $observer) 
     {
-        /*$displayText = $observer->getData('display');
-        $displayText->setDisplay('Catch magento 2 event successfully!!!');*/
-        // echo $this->_session->getIsloggedin();
-        // echo $this->_session->getOtpdone();
-        // echo $this->_session->getOtp();
-
-    	// echo "strinssg"; exit();
-    	// echo $this->_session->getSasi();
-
-    	// $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/TwoFactor.log'); 
-    	// $logger = new \Zend\Log\Logger(); 
-    	// $logger->addWriter($writer); 
-    	// $logger->info($auth);
-    	// echo $auth->getUser()->getUserId();
-    	// exit();
-         //$this->redirect->redirect($controller->getResponse(), 'exampleadminnewpage/helloworld/index');
+        $login = $this->_session->getIsloggedin();
+        $otp = $this->_session->getOtpdone();
+        $action = $this->_request->getModuleName().$this->_request->getControllerName().$this->_request->getActionName();
+        if (($login == 1)&&($action != "twofactorindexindex")&&($otp == 0)) {
+             $CustomRedirectionUrl = $this->_url->getUrl('twofactor/index/index');
+             $this->_responseFactory->create()->setRedirect($CustomRedirectionUrl)->sendResponse();
+             exit();
+        }
     }
 
 
