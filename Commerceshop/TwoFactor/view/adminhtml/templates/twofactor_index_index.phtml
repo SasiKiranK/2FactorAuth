@@ -9,8 +9,12 @@
 	body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, 
 pre, form, fieldset, input, textarea, p, blockquote, th, td { 
   padding:4px;
-  margin:0;}
+  margin:0;
 
+}
+h1{
+	margin-top: 50px;
+}
 fieldset, img {border:0}
 
 ol, ul, li {list-style:none}
@@ -137,13 +141,14 @@ input[type=text],input[type=password]{
 
 input[type=password]{
   margin-bottom: 25px;
+  margin-top: 50px;
 }
 
 #icon {
   display: inline-block;
   width: 40px;
   background-color: #3a57af;
-  padding: 8px 0px 8px 15px;
+  padding: 8px 0px 8px 13px;
   margin-left: 15px;
   -webkit-border-radius: 4px 0px 0px 4px; 
   -moz-border-radius: 4px 0px 0px 4px; 
@@ -169,7 +174,7 @@ a.button {
   font-size: 14px;
   font-weight: 600;
   color: white;
-  padding: 6px 50px 0px 20px;
+  padding: 4px 50px 0px 20px;
   margin: 10px 8px 20px 0px;
   display: inline-block;
   float: right;
@@ -207,7 +212,28 @@ a.button:hover {
     margin: 10px 14px;
     cursor: pointer;
 }
+.button1 {
+    background-color: #3a57af;
+    border: none;
+    color: white;
+    padding: 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 14px;
+    cursor: pointer;
+}
+
+
 .button:hover {
+	top: 3px;
+  background-color:#2e458b;
+  -webkit-box-shadow: none; 
+  -moz-box-shadow: none; 
+  box-shadow: none;
+}
+.button1:hover{
 	top: 3px;
   background-color:#2e458b;
   -webkit-box-shadow: none; 
@@ -225,7 +251,7 @@ a.button:hover {
   <h1>Please Enter OTP</h1>
 
   <form action="/">
-      <hr>
+      
     <!-- <div class="accounttype">
       <input type="radio" value="None" id="radioOne" name="account" checked/>
       <label for="radioOne" class="radio" chec>Personal</label>
@@ -237,7 +263,7 @@ a.button:hover {
   
   <input type="password" name="name" id="name" placeholder="OTP" required/><br/>
   <button class="button">Submit</button>
-  <button class="button">Re-Send OTP</button>
+  <button class="button1">Re-Send OTP</button>
   
    
    <a href="#" class="button">Back</a>
