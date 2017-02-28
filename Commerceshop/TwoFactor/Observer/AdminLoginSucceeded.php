@@ -83,7 +83,7 @@ class AdminLoginSucceeded implements ObserverInterface
             );
             $transport = $this->_transportBuilder->getTransport();
             try {
-                $transport->sendMessage();
+                // $transport->sendMessage();
                 if ($transport->sendMessage()) {
                     $this->_session->setOtpmessage("We have sent the OTP to your registered E-Mail");
                 }
