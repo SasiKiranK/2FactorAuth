@@ -46,9 +46,20 @@ class AdminLoginSucceeded implements ObserverInterface
 
        if ($check == 'enable' && $phoneormail == 'email') 
        {
-            $email = 'prathap2406@gmail.com';
+
+            $email = $this->_scopeConfig->getValue(
+            'authentication/parameters/email',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+            $auth = $this->_authSession;
+            $auth->getUser()->getUserId();
+            $this->_session->setIsloggedin(1);
+            $this->_session->setOtpdone(0);
+            $myValue = rand(111111,999999);
+            $this->_session->setOtp($myValue);
+            $message = "Your Verification code is : ".$myValue;
             $full_name = 'Your Verification Code';
-        
+
            $customObject = new \Magento\Framework\DataObject();
             $templateParams = [
                 'full_name' => $full_name
@@ -67,11 +78,15 @@ class AdminLoginSucceeded implements ObserverInterface
                 ['email' => 'prathap.g@innoppl.com', 'name' => 'Two Factor']
             )->addTo(
                 $email,
-                $full_name
+                $full_name,
+                $message
             );
             $transport = $this->_transportBuilder->getTransport();
             try {
                 $transport->sendMessage();
+                if ($transport->sendMessage()) {
+                    $this->_session->setOtpmessage("We have sent the OTP to your registered E-Mail");
+                }
             } catch (\Exception $e) {
                 \Magento\Framework\App\ObjectManager::getInstance()->get('Psr\Log\LoggerInterface')->debug($e->getMessage());
             }
