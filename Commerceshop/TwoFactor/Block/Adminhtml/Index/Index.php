@@ -28,7 +28,7 @@ protected $_backendUrl;
     {
         if($this->_session->getOtpmessage()){
             $message = $this->_session->getOtpmessage();
-            $this->_session->unsOtpmessage();
+            // $this->_session->unsOtpmessage();
             return $message;
         }
         return false;
