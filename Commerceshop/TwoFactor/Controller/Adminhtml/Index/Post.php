@@ -14,7 +14,7 @@ class Post extends \Magento\Backend\App\Action
     protected $resultRedirect;
     protected $_transportBuilder;
     protected $_storeManager;
-      public function __construct(
+    public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
         \Magento\Framework\App\ResponseFactory $responseFactory,
@@ -23,8 +23,8 @@ class Post extends \Magento\Backend\App\Action
         \Magento\Framework\Controller\ResultFactory $result,
         \Magento\Backend\Model\Session $session,
         \Magento\Framework\UrlInterface $url,
-        TransportBuilder $transportBuilder,
-        StoreManagerInterface $storeManager
+        \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     )
     {
         $this->_resultPageFactory = $resultPageFactory;
@@ -51,24 +51,20 @@ class Post extends \Magento\Backend\App\Action
         $base = $this->_directory_list->getPath('app')."/code/Commerceshop/TwoFactor/lib/";
         require_once($base.'way2sms-api.php');
         $message = "Your Verification code is : ".$myValue;
-        if(sendWay2SMS ( '9789822842' , 'manoj' , $mobileNumber , $message)){
-            
+        if(sendWay2SMS ( '9789822842' , 'manoj' , $mobileNumber , $message)){   
         $CustomRedirectionUrl = $this->_url->getUrl('twofactor/index/index');
         $resultRedirect = $this->resultRedirect->create(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT);
         $resultRedirect->setUrl($CustomRedirectionUrl);
         return $resultRedirect; 
         exit();
         }
-
         }
         if ($post['email']) 
         {
             $email = $post['email'];
             $myValue = rand(111111,999999);
             $this->_session->setOtp($myValue);
-            
             $full_name = "Your Verification code is : ".$myValue;
-
            $customObject = new \Magento\Framework\DataObject();
             $templateParams = [
                 'full_name' => $full_name
@@ -89,16 +85,19 @@ class Post extends \Magento\Backend\App\Action
                 $email,
                 $full_name
             );
-
-            $transport = $this->_transportBuilder->getTransport();
             try {
-                // $transport->sendMessage();
-                if ($transport->sendMessage()) {
-                    $this->_session->setOtpmessage("We have sent the OTP to your registered E-Mail");
 
-                }
-            } catch (\Exception $e) {
-                \Magento\Framework\App\ObjectManager::getInstance()->get('Psr\Log\LoggerInterface')->debug($e->getMessage());
+             $transport = $this->_transportBuilder->getTransport();
+             $send = $transport->sendMessage();
+             $CustomRedirectionUrl = $this->_url->getUrl('twofactor/index/index');
+             $resultRedirect = $this->resultRedirect->create(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT);
+             $resultRedirect->setUrl($CustomRedirectionUrl);
+             return $resultRedirect; 
+            } 
+            catch (Exception $e) {
+                
+                  $e->getMessage(); 
+        
             }
         }
     
