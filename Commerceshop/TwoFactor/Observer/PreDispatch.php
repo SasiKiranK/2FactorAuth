@@ -29,8 +29,8 @@ class PreDispatch implements ObserverInterface
         $login = $this->_session->getIsloggedin();
         $otp = $this->_session->getOtpdone();
         $action = $this->_request->getModuleName().$this->_request->getControllerName().$this->_request->getActionName();
-        if (($login == 1)&&($action != "twofactorindexindex")&&($otp == 0)) {
-             $CustomRedirectionUrl = $this->_url->getUrl('twofactor/index/index');
+        if (($login == 1)&&($action != "twofactorindexinput")&&($otp == 0)&&($action != "twofactorindexpost")&&($action != "twofactorindexindex")) {
+             $CustomRedirectionUrl = $this->_url->getUrl('twofactor/index/input');
              $this->_responseFactory->create()->setRedirect($CustomRedirectionUrl)->sendResponse();
              exit();
         }
