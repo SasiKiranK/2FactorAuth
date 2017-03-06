@@ -43,15 +43,17 @@ class Post extends \Magento\Backend\App\Action
     {        
        
         $post = $this->getRequest()->getPostValue(); 
-        /*$email = $post['email'];*/
+        
         if (isset($post['phone'])) {
         $mobileNumber =  $post['phone'];
+        $this->_session->setMyValue($mobileNumber);
+        $this->_session->getMyValue();
         $myValue = rand(111111,999999);
         $this->_session->setOtp($myValue);
         $base = $this->_directory_list->getPath('app')."/code/Commerceshop/TwoFactor/lib/";
         require_once($base.'way2sms-api.php');
         $message = "Your Verification code is : ".$myValue;
-        if(sendWay2SMS ( '9789822842' , 'manoj' , $mobileNumber , $message)){   
+        if(sendWay2SMS ( '9791743783' , 'password' , $mobileNumber , $message)){   
         $CustomRedirectionUrl = $this->_url->getUrl('twofactor/index/index');
         $resultRedirect = $this->resultRedirect->create(\Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT);
         $resultRedirect->setUrl($CustomRedirectionUrl);
@@ -59,9 +61,11 @@ class Post extends \Magento\Backend\App\Action
         exit();
         }
         }
-        if ($post['email']) 
+        if (isset($post['email'])) 
         {
             $email = $post['email'];
+            $this->_session->setMyEmail($email);
+            $this->_session->getMyEmail();
             $myValue = rand(111111,999999);
             $this->_session->setOtp($myValue);
             $full_name = "Your Verification code is : ".$myValue;

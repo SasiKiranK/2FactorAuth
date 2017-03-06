@@ -115,10 +115,6 @@ label.radio:after {
 	transform: rotate(-45deg);
 }
 
-input[type=radio]:checked + label:after {
-	opacity: 1;
-}
-
 hr{
   color: #a9a9a9;
   opacity: 0.3;
@@ -285,3 +281,16 @@ $FormKey = $objectManager->get('Magento\Framework\Data\Form\FormKey');
 </div>
 </body>
 </html>
+<!-- <script>
+
+$('.button1').click(function (event){ 
+     event.preventDefault(); 
+     $.ajax({
+        url: $(this).attr('href')
+        ,success: function(response) {
+            alert(response)
+        }
+     })
+     return false; //for good measure
+});
+</script> -->
