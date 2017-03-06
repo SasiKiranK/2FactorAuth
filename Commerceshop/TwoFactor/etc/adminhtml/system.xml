@@ -15,22 +15,11 @@
             <group id="parameters" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Two-Factor Authentication</label>
                 <!-- create text type field -->
-                <field id="phone" translate="label comment" sortOrder="8" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Phone</label>
-                    <comment></comment>
-                </field>
-                <field id="email" translate="label comment" sortOrder="9" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>E-Mail</label>
-                </field>
                 <field id="config" translate="label comment" sortOrder="6" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
                      <label>Configuration</label>
                      <source_model>Commerceshop\TwoFactor\Model\Config\Source\Menu</source_model>
                 </field>
-                <field id="phoneormail" translate="label comment" sortOrder="7" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                     <label>Select Type</label>
-                     <source_model>Commerceshop\TwoFactor\Model\Config\Source\phoneemail</source_model>
-
-                </field>
+                
             </group>
         </section>
     </system>

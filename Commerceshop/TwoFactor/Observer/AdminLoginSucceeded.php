@@ -35,35 +35,17 @@ class AdminLoginSucceeded implements ObserverInterface
     }
     public function execute(Observer $observer) 
     {
-        
-       /*$check = $this->_scopeConfig->getValue(
+        $check = $this->_scopeConfig->getValue(
             'authentication/parameters/config',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-       
-       $phoneormail = $this->_scopeConfig->getValue(
-            'authentication/parameters/phoneormail',
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE);*/
-
-       /*if ($check == 'enable' && $phoneormail == 'phone')
-       {*/
+        if ($check == 'enable') 
+        {
 
         $auth = $this->_authSession;
         $auth->getUser()->getUserId();
         $this->_session->setIsloggedin(1);
         $this->_session->setOtpdone(0);
-        /*$myValue = rand(111111,999999);*/
-        /*$this->_session->setOtp($myValue);
-        $base = $this->_directory_list->getPath('app')."/code/Commerceshop/TwoFactor/lib/";
-        require_once($base.'way2sms-api.php');
-        $message = "Your Verification code is : ".$myValue;
-        $mobileNumber = $this->_scopeConfig->getValue(
-            'authentication/parameters/phone',
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        /*echo $mobileNumber;*/
-        /*$mobileNumber = '9791743783';*/
-        /*if(sendWay2SMS ( '9791743783' , 'password' , $mobileNumber , $message)){
-            $this->_session->setOtpmessage("We have sent the OTP to your Registered Mobile Number");
-        }*/
+        }
     
     }
 }
